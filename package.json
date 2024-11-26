@@ -1,0 +1,19 @@
+{
+  "name": "@cardfolio/monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.14.2",
+  "scripts": {
+    "prepare": "husky",
+    "dev": "pnpm -r --parallel run dev",
+    "build": "nx run-many --parallel -t build",
+    "lint": "nx run-many --parallel -t lint",
+    "test": "nx run-many --parallel -t test",
+    "test:cov": "nx run-many --parallel --output-style=static -t test:cov"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "nx": "20.1.3",
+    "typescript": "^5.7.2"
+  }
+}

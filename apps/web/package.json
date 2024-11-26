@@ -1,0 +1,7 @@
+{
+  "name": "@cardfolio/web",
+  "description": "The web client for Cardfolio",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js"
+}

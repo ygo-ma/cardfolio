@@ -1,0 +1,21 @@
+# Node and pnpm
+node_modules/
+.pnpm-store/
+.pnpm-debug.log
+
+# Local env files and other local files
+.env
+*.local
+
+# Build artifacts
+dist/
+
+# Testing artifacts
+coverage/
+.lighthouseci/
+.eslintcache
+
+
+
+.nx/cache
+.nx/workspace-data
