@@ -3,10 +3,13 @@
   "description": "The web client for Cardfolio",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "lint": "eslint --cache --max-warnings=0 . && prettier --cache --check ."
   },
   "devDependencies": {
+    "@cardfolio/eslint-config": "workspace:^",
     "vite": "^6.0.0"
   }
 }

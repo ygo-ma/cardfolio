@@ -1,1 +1,1 @@
-pnpm test
+pnpm nx affected --uncommitted --targets=lint,test --parallel
