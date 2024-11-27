@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Dev",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm run dev",
+      "serverReadyAction": {
+        "pattern": "Local:\\s+(https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      },
+      "cwd": "${workspaceFolder}/apps/web"
+    },
+    {
+      "name": "Preview",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm run build && pnpm run preview",
+      "serverReadyAction": {
+        "pattern": "Local:\\s+(https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome"
+      },
+      "cwd": "${workspaceFolder}/apps/web"
+    }
+  ]
+}
