@@ -7,7 +7,7 @@
       "request": "launch",
       "command": "pnpm run dev",
       "serverReadyAction": {
-        "pattern": "Local:\\s+(https?://.+)",
+        "pattern": "Local:\\s+(https?://[^\\s]+)",
         "uriFormat": "%s",
         "action": "debugWithChrome"
       },
@@ -19,7 +19,7 @@
       "request": "launch",
       "command": "pnpm run build && pnpm run preview",
       "serverReadyAction": {
-        "pattern": "Local:\\s+(https?://.+)",
+        "pattern": "Local:\\s+(https?://[^\\s]+)",
         "uriFormat": "%s",
         "action": "debugWithChrome"
       },
