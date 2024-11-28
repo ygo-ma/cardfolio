@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint --cache --max-warnings=0 . && prettier --cache --check ."
+    "lint": "tsc -b && eslint --cache --max-warnings=0 . && prettier --cache --check ."
   },
   "dependencies": {
     "i18next": "^24.0.2",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@cardfolio/eslint-config": "workspace:^",
+    "@cardfolio/tsconfig": "workspace:^",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react-swc": "^3.5.0",

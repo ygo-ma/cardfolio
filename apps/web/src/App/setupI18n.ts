@@ -6,7 +6,7 @@ import resourcesToBackend from "i18next-resources-to-backend";
 // Fetch all locale files
 const langModules = import.meta.glob("../assets/locale/*/*.json");
 const supportedLanguages = new Set(
-  Object.keys(langModules).map((key) => key.split("/")[3]),
+  Object.keys(langModules).map((key) => key.split("/")[3] as string),
 );
 
 console.debug("Supported languages: ", supportedLanguages);
@@ -20,6 +20,14 @@ i18n
 
       const key = `../assets/locale/${language}/${namespace}.json`;
       const moduleFunc = langModules[key];
+      if (!moduleFunc) {
+        const error = new Error(
+          `No locale file found for ${language}/${namespace}`,
+        );
+        error.name = "LocaleNotFoundError";
+        throw error;
+      }
+
       const { default: localeData } = (await moduleFunc()) as {
         default: Record<string, string>;
       };
