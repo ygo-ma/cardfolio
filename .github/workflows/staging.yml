@@ -1,0 +1,59 @@
+name: Staging
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  publish:
+    name: Publish to CF pages
+    runs-on: ubuntu-latest
+    environment:
+      name: Staging
+      url: ${{ vars.STAGING_URL }}
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node with caching
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: |
+          pnpm install --frozen-lockfile --strict-peer-dependencies
+          pnpm install -g wrangler
+
+      - name: Build
+        run: pnpm --filter ./apps/web build
+
+      - name: Deploy to cloudflare
+        working-directory: apps/web/
+        run: |
+          # Add a middleware for basic auth
+          mv ../../.github/staging/functions ./functions
+
+          wrangler pages deploy dist/ \
+            --project-name=$PROJECT \
+            --branch=main \
+            --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PROJECT: ${{ vars.CLOUDFLARE_STAGING_PROJECT }}
