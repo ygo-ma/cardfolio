@@ -5,7 +5,7 @@
       "name": "Dev",
       "type": "node-terminal",
       "request": "launch",
-      "command": "pnpm run dev",
+      "command": "pnpm run dev --host 0.0.0.0",
       "serverReadyAction": {
         "pattern": "Local:\\s+(https?://[^\\s]+)",
         "uriFormat": "%s",
@@ -17,7 +17,7 @@
       "name": "Preview",
       "type": "node-terminal",
       "request": "launch",
-      "command": "pnpm run build && pnpm run preview",
+      "command": "pnpm run build && pnpm run preview --host 0.0.0.0",
       "serverReadyAction": {
         "pattern": "Local:\\s+(https?://[^\\s]+)",
         "uriFormat": "%s",

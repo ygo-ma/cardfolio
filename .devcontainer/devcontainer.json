@@ -6,6 +6,15 @@
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "pnpm install",
   // Fix an issue with git complaining about dubious ownership of the workspace folder
   "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
 }
