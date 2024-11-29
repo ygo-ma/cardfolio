@@ -1,4 +1,9 @@
 {
   "cardfolio_title": "CardFolio",
-  "hello_message": "Hello world!"
+  "hello_message": "Hello world!",
+
+  "search": "Search",
+  "login": "Login",
+
+  "copyright": "© {{year}} Cardfolio"
 }

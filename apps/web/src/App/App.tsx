@@ -1,7 +1,9 @@
-import Home from "../Home";
 import { Suspense } from "react";
 
-import "./setupI18n";
+import Home from "../components/Home";
+
+import "../assets/style/main.css";
+import "./setupI18n.ts";
 
 function App() {
   return (
