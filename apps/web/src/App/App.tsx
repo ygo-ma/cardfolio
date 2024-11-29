@@ -1,15 +1,16 @@
 import { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
+import { ErrorBoundary } from "react-error-boundary";
 
-import Home from "../components/Home";
+import ErrorPage from "../components/ErrorPage";
+import MainLayout from "../components/MainLayout";
+
+import Home from "../pages/Home";
+import Collection from "../pages/Collection";
+import Login from "../pages/Login";
 
 import "../assets/style/main.css";
 import "./setupI18n.ts";
-import Collection from "../components/Collection";
-import { ErrorBoundary } from "react-error-boundary";
-import ErrorPage from "../components/ErrorPage";
-import Login from "../components/Login";
-import MainLayout from "../components/MainLayout";
 
 function App() {
   return (
