@@ -6,7 +6,7 @@ type User = {
 
 type UserStore = {
   user: User | null;
-  setUser: (user: User) => void;
+  setUser: (user: User | null) => void;
 };
 
 export class UserNotLoggedInError extends Error {
