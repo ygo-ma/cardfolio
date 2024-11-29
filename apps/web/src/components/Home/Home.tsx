@@ -1,20 +1,15 @@
-import { useTranslation } from "react-i18next";
-import Header from "../Header";
-import Body from "../Body";
-import Footer from "../Footer";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 function Home() {
-  const { t } = useTranslation("common");
+  const navigate = useNavigate();
 
-  return (
-    <>
-      <Header />
-      <Body>
-        <p>{t("hello_message")}</p>
-      </Body>
-      <Footer />
-    </>
-  );
+  useEffect(() => {
+    // Website only has the collection page, so redirect to it
+    navigate("/collection", { replace: true });
+  }, [navigate]);
+
+  return <></>;
 }
 
 export default Home;
