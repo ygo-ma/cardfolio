@@ -1,7 +1,4 @@
 import { useTranslation } from "react-i18next";
-import Header from "../Header";
-import Body from "../Body";
-import Footer from "../Footer";
 import { useUser } from "../../stores/user";
 
 function Collection() {
@@ -10,12 +7,8 @@ function Collection() {
 
   return (
     <>
-      <Header />
-      <Body>
-        <h2>{t("collection")}</h2>
-        <p>{t("hello_message", { name: user.name })}</p>
-      </Body>
-      <Footer />
+      <h2>{t("collection")}</h2>
+      <p>{t("hello_message", { name: user.name })}</p>
     </>
   );
 }
