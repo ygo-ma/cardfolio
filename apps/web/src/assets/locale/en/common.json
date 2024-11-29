@@ -12,5 +12,5 @@
   "collection": "Collection",
   "hello_message": "Hello {{ name }}!",
 
-  "copyright": "© {{year}} Cardfolio"
+  "copyright": "© {{ year }} Cardfolio"
 }

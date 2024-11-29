@@ -1,9 +1,16 @@
 {
   "cardfolio_title": "CardFolio",
-  "hello_message": "Bonjour le monde !",
 
   "search": "Recherche",
-  "login": "Connexion",
 
-  "copyright": "© {{year}} Cardfolio"
+  "login": "Connexion",
+  "email_label": "Email :",
+  "password_label": "Mot de passe :",
+  "login_button": "Se connecter",
+  "logout": "Déconnexion",
+
+  "collection": "Collection",
+  "hello_message": "Bonjour {{ name }} !",
+
+  "copyright": "© {{ year }} Cardfolio"
 }
