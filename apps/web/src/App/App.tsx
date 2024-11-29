@@ -5,9 +5,10 @@ import { ErrorBoundary } from "react-error-boundary";
 import ErrorPage from "../components/ErrorPage";
 import MainLayout from "../components/MainLayout";
 
-import Home from "../pages/Home";
-import Collection from "../pages/Collection";
-import Login from "../pages/Login";
+import HomePage from "../pages/Home";
+import CollectionPage from "../pages/Collection";
+import LoginPage from "../pages/Login";
+import NotFoundPage from "../pages/NotFound/NotFound.tsx";
 
 import "../assets/style/main.css";
 import "./setupI18n.ts";
@@ -19,9 +20,10 @@ function App() {
         <ErrorBoundary FallbackComponent={ErrorPage}>
           <Routes>
             <Route element={<MainLayout />}>
-              <Route path="/" index element={<Home />} />
-              <Route path="/collection" element={<Collection />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/" index element={<HomePage />} />
+              <Route path="/collection" element={<CollectionPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </ErrorBoundary>

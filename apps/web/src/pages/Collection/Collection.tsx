@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useUser } from "../../stores/user";
 
-function Collection() {
+function CollectionPage() {
   const { t } = useTranslation("common");
   const user = useUser();
 
@@ -13,4 +13,4 @@ function Collection() {
   );
 }
 
-export default Collection;
+export default CollectionPage;

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
-function Home() {
+function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,4 +12,4 @@ function Home() {
   return <></>;
 }
 
-export default Home;
+export default HomePage;

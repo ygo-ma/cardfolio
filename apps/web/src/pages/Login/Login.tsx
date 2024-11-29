@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router";
 import { useUserStore } from "../../stores/user";
 import { useTranslation } from "react-i18next";
 
-function Login() {
+function LoginPage() {
   const { t } = useTranslation("common");
   const userStore = useUserStore();
   const { state } = useLocation();
@@ -35,4 +35,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;
