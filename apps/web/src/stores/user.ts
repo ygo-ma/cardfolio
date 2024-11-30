@@ -9,11 +9,11 @@ type UserStore = {
   setUser: (user: User | null) => void;
 };
 
-export class UserNotLoggedInError extends Error {
+export class LoginRequiredError extends Error {
   constructor() {
-    super("User not logged in");
+    super("Login required");
 
-    this.name = "UserNotLoggedInError";
+    this.name = "LoginRequiredError";
   }
 }
 
@@ -22,10 +22,13 @@ export const useUserStore = create<UserStore>((set) => ({
   setUser: (user) => set({ user }),
 }));
 
+/**
+ * A custom hook that ensures the user is logged in.
+ */
 export function useUser() {
   const user = useUserStore(({ user }) => user);
   if (!user) {
-    throw new UserNotLoggedInError();
+    throw new LoginRequiredError();
   }
 
   return user;

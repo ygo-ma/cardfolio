@@ -1,14 +1,7 @@
 import { useEffect } from "react";
 import { type FallbackProps } from "react-error-boundary";
 import { useLocation, useNavigate } from "react-router";
-import { UserNotLoggedInError } from "../../stores/user";
-
-// Prevent recognized errors from being logged to the console
-window.addEventListener("error", (event: ErrorEvent) => {
-  if (event.error instanceof UserNotLoggedInError) {
-    event.preventDefault();
-  }
-});
+import { LoginRequiredError } from "../../stores/user";
 
 function ErrorPage({ error, resetErrorBoundary }: FallbackProps) {
   const navigate = useNavigate();
@@ -16,7 +9,7 @@ function ErrorPage({ error, resetErrorBoundary }: FallbackProps) {
 
   useEffect(() => {
     // If the user is not logged in, redirect to the login page
-    if (error instanceof UserNotLoggedInError) {
+    if (error instanceof LoginRequiredError) {
       resetErrorBoundary();
       navigate("/login", { state: { redirect: pathname }, replace: true });
     }
@@ -29,5 +22,24 @@ function ErrorPage({ error, resetErrorBoundary }: FallbackProps) {
     </div>
   );
 }
+
+// Prevent ErrorBoundary errors from being logged to the console
+const ignoredErrors = new Set(["LoginRequiredError"]);
+
+// Errors are still logged if using only one of the following methods
+const originalConsoleError = console.error;
+console.error = (error: unknown, ...args: unknown[]) => {
+  if (error instanceof Error && ignoredErrors.has(error?.name)) {
+    return;
+  }
+
+  originalConsoleError(error, ...args);
+};
+
+window.addEventListener("error", (event: ErrorEvent) => {
+  if (ignoredErrors.has(event.error?.name)) {
+    event.preventDefault();
+  }
+});
 
 export default ErrorPage;
