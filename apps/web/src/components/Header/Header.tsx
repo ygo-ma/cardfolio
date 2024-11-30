@@ -1,19 +1,37 @@
 import { useTranslation } from "react-i18next";
 import styles from "./Header.module.css";
+import { NavLink } from "react-router";
+import { useUserStore } from "../../stores/user";
+import { MouseEventHandler } from "react";
 
 function Header() {
   const { t } = useTranslation("common");
+  const { user, setUser } = useUserStore();
+
+  const logout: MouseEventHandler<HTMLAnchorElement> = (event) => {
+    event.preventDefault();
+
+    setUser(null);
+  };
 
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <h1 className={styles.logo}>{t("cardfolio_title")}</h1>
+        <NavLink to="/">
+          <h1 className={styles.logo}>{t("cardfolio_title")}</h1>
+        </NavLink>
         <div className={styles.separator}></div>
         <div className={styles.search}>
-          <button>{t("search")}</button>
+          <a href="#">{t("search")}</a>
         </div>
         <div className={styles.userButtons}>
-          <button>{t("login")}</button>
+          {user ? (
+            <a href="#" onClick={logout}>
+              {t("logout")}
+            </a>
+          ) : (
+            <NavLink to="/login">{t("login")}</NavLink>
+          )}
         </div>
       </div>
     </header>

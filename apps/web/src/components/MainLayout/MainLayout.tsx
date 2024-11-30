@@ -1,20 +1,18 @@
-import { useTranslation } from "react-i18next";
 import Header from "../Header";
 import Body from "../Body";
 import Footer from "../Footer";
+import { Outlet } from "react-router";
 
-function Home() {
-  const { t } = useTranslation("common");
-
+function MainLayout() {
   return (
     <>
       <Header />
       <Body>
-        <p>{t("hello_message")}</p>
+        <Outlet />
       </Body>
       <Footer />
     </>
   );
 }
 
-export default Home;
+export default MainLayout;
