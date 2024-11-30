@@ -23,4 +23,23 @@ function ErrorPage({ error, resetErrorBoundary }: FallbackProps) {
   );
 }
 
+// Prevent ErrorBoundary errors from being logged to the console
+const ignoredErrors = new Set(["LoginRequiredError"]);
+
+// Errors are still logged if using only one of the following methods
+const originalConsoleError = console.error;
+console.error = (error: unknown, ...args: unknown[]) => {
+  if (error instanceof Error && ignoredErrors.has(error?.name)) {
+    return;
+  }
+
+  originalConsoleError(error, ...args);
+};
+
+window.addEventListener("error", (event: ErrorEvent) => {
+  if (ignoredErrors.has(event.error?.name)) {
+    event.preventDefault();
+  }
+});
+
 export default ErrorPage;

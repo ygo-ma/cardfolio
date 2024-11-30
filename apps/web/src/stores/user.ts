@@ -11,9 +11,9 @@ type UserStore = {
 
 export class LoginRequiredError extends Error {
   constructor() {
-    super("User not logged in");
+    super("Login required");
 
-    this.name = "UserNotLoggedInError";
+    this.name = "LoginRequiredError";
   }
 }
 
