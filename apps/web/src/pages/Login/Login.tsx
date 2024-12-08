@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useUserStore } from "../../stores/user";
 import { useTranslation } from "react-i18next";
 
@@ -21,15 +21,24 @@ function LoginPage() {
     <>
       <h2>{t("login")}</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">
-          {t("email_label")}
-          <input type="email" name="email" required />
-        </label>
-        <label htmlFor="password">
-          {t("password_label")}
-          <input type="password" name="password" required />
-        </label>
-        <button type="submit">{t("login_button")}</button>
+        <p>
+          <label htmlFor="email">
+            {t("login.email_label")}
+            <input type="email" name="email" required />
+          </label>
+        </p>
+        <p>
+          <label htmlFor="password">
+            {t("login.password_label")}
+            <input type="password" name="password" required />
+          </label>
+        </p>
+        <p>
+          <button type="submit">{t("login.login_button")}</button>
+        </p>
+        <p>
+          <Link to="/register">{t("login.register_link")}</Link>
+        </p>
       </form>
     </>
   );

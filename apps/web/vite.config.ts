@@ -18,4 +18,9 @@ export default defineConfig({
       inject: { data: htmlData },
     }),
   ],
+  css: {
+    modules: {
+      localsConvention: "camelCaseOnly",
+    },
+  },
 });

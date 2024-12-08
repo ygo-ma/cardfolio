@@ -15,3 +15,8 @@ RUN echo 'node ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/node
 
 # Switch to default user
 USER node
+
+# Install deno
+RUN curl -fsSL https://deno.land/install.sh | sh
+ENV DENO_INSTALL="/home/node/.deno"
+ENV PATH="$DENO_INSTALL/bin:$PATH"

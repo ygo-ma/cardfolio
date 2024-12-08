@@ -21,5 +21,23 @@
     "editor.formatOnSave": true
   },
   // Show a vertical line at 80 characters
-  "editor.rulers": [80]
+  "editor.rulers": [80],
+  // Configure Deno for supabase
+  "deno.enablePaths": ["apps/web/supabase/functions"],
+  "deno.lint": true,
+  "deno.unstable": [
+    "bare-node-builtins",
+    "byonm",
+    "sloppy-imports",
+    "unsafe-proto",
+    "webgpu",
+    "broadcast-channel",
+    "worker-options",
+    "cron",
+    "kv",
+    "ffi",
+    "fs",
+    "http",
+    "net"
+  ]
 }

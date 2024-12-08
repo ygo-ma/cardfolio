@@ -4,9 +4,14 @@
   "search": "Search",
 
   "login": "Login",
-  "email_label": "Email:",
-  "password_label": "Password:",
-  "login_button": "Login",
+  "register": "Register",
+  "login.email_label": "Email:",
+  "login.password_label": "Password:",
+  "login.password_confirm_label": "Confirm password:",
+  "login.login_button": "Login",
+  "login.register_button": "Register",
+  "login.register_link": "Don't have an account? Register here.",
+  "login.login_link": "Already have an account? Login here.",
   "logout": "Logout",
 
   "collection": "Collection",

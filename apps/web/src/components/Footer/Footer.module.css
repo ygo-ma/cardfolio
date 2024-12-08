@@ -1,7 +1,9 @@
 .container {
   max-width: var(--page-width);
-  margin: var(--container-padding) auto 0 auto;
+  margin: 0 auto;
 
   border-top: var(--separator-color) 1px solid;
   padding: var(--container-padding) var(--pad-10);
+
+  text-align: center;
 }
