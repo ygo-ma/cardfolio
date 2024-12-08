@@ -1,15 +1,28 @@
 :root {
   --page-width: 1000px;
+  --page-bg: #f1f1f1;
 
+  --pad-5: 0.25rem;
   --pad-10: 0.5rem;
   --pad-20: 1rem;
+  --pad-40: 2rem;
 
   --container-padding: var(--pad-20);
+  --container-radius: 3px;
+  --container-bg: #fff;
 
   --separator-color: #ddd;
 
   --header-bg: #464050;
   --header-fg: #fff;
+
+  --input-border-color: #ddd;
+  --input-label-color: #666;
+  --input-radius: 3px;
+
+  --button-primary-bg: #464050;
+  --button-primary-bg-hover: #3a343d;
+  --button-primary-fg: #fff;
 }
 
 body {

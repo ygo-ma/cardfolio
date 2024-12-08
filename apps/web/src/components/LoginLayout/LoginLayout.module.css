@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--page-bg);
+  container-type: inline-size;
+  padding: var(--pad-20);
+
+  @media (width < 440px) {
+    background-color: var(--container-bg);
+  }
+}
+
+.container {
+  padding: var(--pad-40);
+  border-radius: var(--container-radius);
+  background-color: var(--container-bg);
+
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+
+  @media (width < 440px) {
+    background-color: transparent;
+    border-radius: unset;
+  }
+}

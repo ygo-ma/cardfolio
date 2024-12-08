@@ -1,0 +1,21 @@
+.container {
+  --pad-top: var(--pad-10);
+  --pad-start: var(--pad-10);
+}
+
+.label {
+  font-size: 0.8em;
+  color: var(--input-label-color);
+  display: block;
+  margin-bottom: var(--pad-5);
+}
+
+.input {
+  border-radius: var(--input-radius);
+  border: 1px solid var(--input-border-color);
+  padding: var(--pad-10) var(--pad-20);
+  padding-top: var(--pad-top);
+  padding-inline-start: var(--pad-start);
+  min-width: 100%;
+  box-sizing: border-box;
+}
