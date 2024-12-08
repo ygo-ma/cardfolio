@@ -14,6 +14,9 @@
   "login.already_have_account": "Already have an account? <0>Login here</0>",
   "logout": "Logout",
 
+  "auth.user_already_exists": "A user with this email already exists",
+  "auth.weak_password": "The password needs to have at least 6 characters",
+
   "collection": "Collection",
   "hello_message": "Hello {{ name }}!",
 

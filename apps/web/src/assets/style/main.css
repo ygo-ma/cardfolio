@@ -23,6 +23,8 @@
   --button-primary-bg: #464050;
   --button-primary-bg-hover: #3a343d;
   --button-primary-fg: #fff;
+
+  --color-error: #bb1010;
 }
 
 body {

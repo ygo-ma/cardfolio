@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import styles from "./TextInput.module.css";
 import classnames from "classnames";
 
@@ -6,9 +7,14 @@ export type TextInputProps = {
   type?: "text" | "email" | "password";
   name?: string;
   required?: boolean;
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-function TextInput({ label, type = "text", name, required }: TextInputProps) {
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function (
+  { label, type = "text", name, required, value, onChange }: TextInputProps,
+  ref,
+) {
   const hasLabel = label !== undefined;
 
   const input = (
@@ -19,6 +25,9 @@ function TextInput({ label, type = "text", name, required }: TextInputProps) {
       type={type}
       name={name}
       required={required}
+      value={value}
+      onChange={onChange}
+      ref={ref}
     />
   );
 
@@ -32,6 +41,6 @@ function TextInput({ label, type = "text", name, required }: TextInputProps) {
   }
 
   return input;
-}
+});
 
 export default TextInput;
