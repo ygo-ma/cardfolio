@@ -1,0 +1,11 @@
+.button {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-fg);
+  padding: var(--pad-10);
+  border-radius: var(--input-radius);
+  border: none;
+
+  &:hover {
+    background-color: var(--button-primary-bg-hover);
+  }
+}

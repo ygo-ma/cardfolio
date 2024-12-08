@@ -4,9 +4,14 @@
   "search": "Recherche",
 
   "login": "Connexion",
-  "email_label": "Email :",
-  "password_label": "Mot de passe :",
-  "login_button": "Se connecter",
+  "login.email_label": "Email :",
+  "login.password_label": "Mot de passe :",
+  "login.password_confirm_label": "Confirmer le mot de passe :",
+  "login.login_button": "Se connecter",
+  "login.signup_button": "S'inscrire",
+  "login.forgot_password": "<0>Mot de passe oublié ?</0>",
+  "login.need_account": "Nouveau ici ? <0>Inscrivez-vous ici</0>",
+  "login.already_have_account": "Vous avez déjà un compte ? <0>Connectez-vous ici</0>",
   "logout": "Déconnexion",
 
   "collection": "Collection",

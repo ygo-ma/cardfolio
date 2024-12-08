@@ -2,12 +2,12 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { useUserStore } from "../../stores/user";
 import { Trans, useTranslation } from "react-i18next";
 
-import styles from "./Login.module.css";
+import styles from "./SignUp.module.css";
 
 import TextInput from "../../components/TextInput";
 import SubmitButton from "../../components/SubmitButton";
 
-function LoginPage() {
+function SignUp() {
   const { t } = useTranslation("common");
   const userStore = useUserStore();
   const { state } = useLocation();
@@ -36,21 +36,21 @@ function LoginPage() {
         name="password"
         required
       />
+      <TextInput
+        label={t("login.password_confirm_label")}
+        type="password"
+        name="password_confirm"
+        required
+      />
+      <SubmitButton label={t("login.signup_button")} expand />
       <div>
         <Trans
-          i18nKey="login.forgot_password"
-          components={[<Link to="/forgot_password" />]}
-        />
-      </div>
-      <SubmitButton label={t("login.login_button")} expand />
-      <div>
-        <Trans
-          i18nKey="login.need_account"
-          components={[<Link to="/signup" />]}
+          i18nKey="login.already_have_account"
+          components={[<Link to="/login" />]}
         />
       </div>
     </form>
   );
 }
 
-export default LoginPage;
+export default SignUp;

@@ -1,0 +1,8 @@
+.logo {
+  user-select: none;
+
+  & a {
+    color: unset;
+    text-decoration: unset;
+  }
+}

@@ -4,11 +4,13 @@ import { ErrorBoundary } from "react-error-boundary";
 
 import ErrorPage from "../components/ErrorPage";
 import MainLayout from "../components/MainLayout";
+import LoginLayout from "../components/LoginLayout";
 
 import HomePage from "../pages/Home";
 import CollectionPage from "../pages/Collection";
 import LoginPage from "../pages/Login";
-import NotFoundPage from "../pages/NotFound/NotFound.tsx";
+import SignUp from "../pages/SignUp";
+import NotFoundPage from "../pages/NotFound";
 
 import "../assets/style/main.css";
 import "./setupI18n.ts";
@@ -22,8 +24,11 @@ function App() {
             <Route element={<MainLayout />}>
               <Route path="/" index element={<HomePage />} />
               <Route path="/collection" element={<CollectionPage />} />
-              <Route path="/login" element={<LoginPage />} />
               <Route path="*" element={<NotFoundPage />} />
+            </Route>
+            <Route element={<LoginLayout />}>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignUp />} />
             </Route>
           </Routes>
         </ErrorBoundary>

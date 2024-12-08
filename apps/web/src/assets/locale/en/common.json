@@ -4,9 +4,14 @@
   "search": "Search",
 
   "login": "Login",
-  "email_label": "Email:",
-  "password_label": "Password:",
-  "login_button": "Login",
+  "login.email_label": "Email:",
+  "login.password_label": "Password:",
+  "login.password_confirm_label": "Confirm password:",
+  "login.login_button": "Login",
+  "login.signup_button": "Sign Up",
+  "login.forgot_password": "<0>Forgot password?</0>",
+  "login.need_account": "New here? <0>Sign up here</0>",
+  "login.already_have_account": "Already have an account? <0>Login here</0>",
   "logout": "Logout",
 
   "collection": "Collection",
