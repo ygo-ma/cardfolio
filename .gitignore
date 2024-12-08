@@ -7,7 +7,6 @@ node_modules/
 *.code-workspace
 
 # Local env files and other local files
-.env
 *.local
 
 # Build artifacts
@@ -17,3 +16,8 @@ dist/
 coverage/
 .lighthouseci/
 .eslintcache
+
+# Supabase
+supabase/.branches
+supabase/.temp
+supabase/.env
