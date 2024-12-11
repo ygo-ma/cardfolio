@@ -14,6 +14,9 @@
   "login.already_have_account": "Vous avez déjà un compte ? <0>Connectez-vous ici</0>",
   "logout": "Déconnexion",
 
+  "auth.user_already_exists": "Un utilisateur avec cet email existe déjà",
+  "auth.weak_password": "Le mot de passe doit contenir au moins 6 caractères",
+
   "collection": "Collection",
   "hello_message": "Bonjour {{ name }} !",
 

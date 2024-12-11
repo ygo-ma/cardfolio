@@ -6,6 +6,7 @@ import styles from "./Login.module.css";
 
 import TextInput from "../../components/TextInput";
 import SubmitButton from "../../components/SubmitButton";
+import FormField from "../../components/FormField";
 
 function LoginPage() {
   const { t } = useTranslation("common");
@@ -24,25 +25,29 @@ function LoginPage() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <TextInput
-        label={t("login.email_label")}
-        type="email"
-        name="email"
-        required
-      />
-      <TextInput
-        label={t("login.password_label")}
-        type="password"
-        name="password"
-        required
-      />
+      <FormField>
+        <TextInput
+          label={t("login.email_label")}
+          type="email"
+          name="email"
+          required
+        />
+      </FormField>
+      <FormField>
+        <TextInput
+          label={t("login.password_label")}
+          type="password"
+          name="password"
+          required
+        />
+      </FormField>
       <div>
         <Trans
           i18nKey="login.forgot_password"
           components={[<Link to="/forgot_password" />]}
         />
       </div>
-      <SubmitButton label={t("login.login_button")} expand />
+      <SubmitButton label={t("login.login_button")} />
       <div>
         <Trans
           i18nKey="login.need_account"
