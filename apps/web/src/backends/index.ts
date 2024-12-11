@@ -1,6 +1,7 @@
-import type BaseUserBackend from "./BaseUserBackend";
-import SupabaseUserBackend from "./SupabaseUserBackend";
-
 export { AuthError } from "./BaseUserBackend";
 
-export const userBackend: BaseUserBackend = new SupabaseUserBackend();
+import type BaseUserBackend from "./BaseUserBackend.ts";
+import { SupabaseUserBackend } from "./supabase";
+
+// Create default backends
+export const UserBackend: BaseUserBackend = new SupabaseUserBackend();

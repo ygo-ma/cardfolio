@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 
 import styles from "./SignUp.module.css";
 
-import { userBackend, AuthError } from "../../backends";
+import { UserBackend, AuthError } from "../../backends";
 import TextInput from "../../components/TextInput";
 import SubmitButton from "../../components/SubmitButton";
 import FormField from "../../components/FormField";
@@ -23,7 +23,7 @@ function SignUp() {
     setProcessing(true);
 
     try {
-      await userBackend.create(email, password, password);
+      await UserBackend.create(email, password, password);
       navigate("/login", { state: { flash: "signup_success" } });
     } catch (error) {
       if (error instanceof AuthError) {

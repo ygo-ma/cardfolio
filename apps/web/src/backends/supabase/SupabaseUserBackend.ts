@@ -1,6 +1,6 @@
 import { AuthApiError, AuthWeakPasswordError } from "@supabase/supabase-js";
-import BaseUserBackend, { AuthError } from "./BaseUserBackend";
-import supabase from "./supabase";
+import BaseUserBackend, { AuthError } from "../BaseUserBackend.ts";
+import supabase from "./client.ts";
 
 /**
  * User backend using Supabase
