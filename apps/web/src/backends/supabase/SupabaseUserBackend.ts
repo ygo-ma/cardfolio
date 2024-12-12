@@ -1,5 +1,5 @@
 import { AuthApiError, AuthWeakPasswordError } from "@supabase/supabase-js";
-import BaseUserBackend, { AuthError } from "../BaseUserBackend.ts";
+import BaseUserBackend, { AuthError, User } from "../BaseUserBackend.ts";
 import supabase from "./client.ts";
 
 /**
@@ -24,5 +24,26 @@ export default class SupabaseUserBackend extends BaseUserBackend {
         throw error;
       }
     }
+  }
+
+  async login(email: string, password: string): Promise<User> {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      if (
+        error instanceof AuthApiError &&
+        error.code === "invalid_credentials"
+      ) {
+        throw new AuthError("auth.invalid_credentials", error);
+      } else {
+        throw error;
+      }
+    }
+
+    const { user } = data;
+    return new User(user.email ?? "<unknown email>");
   }
 }

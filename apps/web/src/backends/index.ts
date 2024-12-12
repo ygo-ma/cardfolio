@@ -1,4 +1,4 @@
-export { AuthError } from "./BaseUserBackend";
+export { AuthError, User } from "./BaseUserBackend";
 
 import type BaseUserBackend from "./BaseUserBackend.ts";
 import { SupabaseUserBackend } from "./supabase";

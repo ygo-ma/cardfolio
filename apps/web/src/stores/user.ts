@@ -1,8 +1,5 @@
 import { create } from "zustand";
-
-type User = {
-  name: string;
-};
+import { User } from "../backends";
 
 type UserStore = {
   user: User | null;
