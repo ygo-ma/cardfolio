@@ -1,4 +1,9 @@
-import { AuthApiError, AuthWeakPasswordError } from "@supabase/supabase-js";
+import {
+  AuthApiError,
+  AuthWeakPasswordError,
+  type User as SupabaseUser,
+} from "@supabase/supabase-js";
+
 import BaseUserBackend, { AuthError, User } from "../BaseUserBackend.ts";
 import supabase from "./client.ts";
 
@@ -44,7 +49,7 @@ export default class SupabaseUserBackend extends BaseUserBackend {
     }
 
     const { user } = data;
-    return new User(user.email ?? "<unknown email>");
+    return this.fromSupabaseUser(user);
   }
 
   async getCurrentUser(): Promise<User | undefined> {
@@ -55,6 +60,36 @@ export default class SupabaseUserBackend extends BaseUserBackend {
       return undefined;
     }
 
+    return this.fromSupabaseUser(user);
+  }
+
+  async logout() {
+    await supabase.auth.signOut();
+  }
+
+  onLogin(callback: (user: User) => void): () => void {
+    const { data } = supabase.auth.onAuthStateChange((event, session) => {
+      const user = session?.user;
+
+      if (event === "SIGNED_IN" && user) {
+        callback(this.fromSupabaseUser(user));
+      }
+    });
+
+    return data.subscription.unsubscribe;
+  }
+
+  onLogout(callback: () => void): () => void {
+    const { data } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_OUT") {
+        callback();
+      }
+    });
+
+    return data.subscription.unsubscribe;
+  }
+
+  private fromSupabaseUser(user: SupabaseUser): User {
     return new User(user.email ?? "<unknown email>");
   }
 }

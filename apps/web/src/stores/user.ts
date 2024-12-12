@@ -19,6 +19,16 @@ export const useUserStore = create<UserStore>((set) => ({
   setUser: (user) => set({ user }),
 }));
 
+// Update the store when the user logs in
+UserBackend.onLogin((user) => {
+  useUserStore.setState({ user });
+});
+
+// Update the store when the user logs out
+UserBackend.onLogout(() => {
+  useUserStore.setState({ user: undefined });
+});
+
 /**
  * A custom hook that ensures the user is logged in.
  *
