@@ -8,7 +8,7 @@ function CollectionPage() {
   return (
     <>
       <h2>{t("collection")}</h2>
-      <p>{t("hello_message", { name: user.name })}</p>
+      <p>{t("hello_message", { name: user.email })}</p>
     </>
   );
 }
