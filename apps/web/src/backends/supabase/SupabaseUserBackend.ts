@@ -46,4 +46,15 @@ export default class SupabaseUserBackend extends BaseUserBackend {
     const { user } = data;
     return new User(user.email ?? "<unknown email>");
   }
+
+  async getCurrentUser(): Promise<User | undefined> {
+    const { data } = await supabase.auth.getSession();
+
+    const user = data?.session?.user;
+    if (!user) {
+      return undefined;
+    }
+
+    return new User(user.email ?? "<unknown email>");
+  }
 }

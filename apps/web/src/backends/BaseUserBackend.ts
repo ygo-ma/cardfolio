@@ -62,4 +62,9 @@ export default abstract class BaseUserBackend {
    * @throws {AuthError} If the user does not exist or the password is incorrect
    */
   abstract login(email: string, password: string): Promise<User>;
+
+  /**
+   * Retrieves the current user
+   */
+  abstract getCurrentUser(): Promise<User | undefined>;
 }
