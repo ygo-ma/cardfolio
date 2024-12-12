@@ -1,9 +1,9 @@
 import { create } from "zustand";
-import { User } from "../backends";
+import { User, UserBackend } from "../backends";
 
 type UserStore = {
-  user: User | null;
-  setUser: (user: User | null) => void;
+  user: User | undefined | null; // null means the session is not loaded yet
+  setUser: (user: User | undefined) => void;
 };
 
 export class LoginRequiredError extends Error {
@@ -21,10 +21,24 @@ export const useUserStore = create<UserStore>((set) => ({
 
 /**
  * A custom hook that ensures the user is logged in.
+ *
+ * @param loginRequired - Whether to redirect the user to the login page
+ *  if not logged in
  */
-export function useUser() {
+export function useUser(loginRequired?: true): User;
+export function useUser(loginRequired: false): User | undefined;
+export function useUser(loginRequired = true): User | undefined {
   const user = useUserStore(({ user }) => user);
-  if (!user) {
+
+  // Load the session if it is not already loaded
+  if (user === null) {
+    throw UserBackend.getCurrentUser().then((user) => {
+      useUserStore.setState({ user });
+    });
+  }
+
+  // If the user is not logged in and login is required, throw an error
+  if (user === undefined && loginRequired) {
     throw new LoginRequiredError();
   }
 

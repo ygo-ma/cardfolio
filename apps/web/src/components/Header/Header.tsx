@@ -1,17 +1,18 @@
 import { useTranslation } from "react-i18next";
 import styles from "./Header.module.css";
 import { NavLink } from "react-router";
-import { useUserStore } from "../../stores/user";
+import { useUser, useUserStore } from "../../stores/user";
 import { MouseEventHandler } from "react";
 
 function Header() {
   const { t } = useTranslation("common");
-  const { user, setUser } = useUserStore();
+  const user = useUser(false);
+  const { setUser } = useUserStore();
 
   const logout: MouseEventHandler<HTMLAnchorElement> = (event) => {
     event.preventDefault();
 
-    setUser(null);
+    setUser(undefined);
   };
 
   return (
