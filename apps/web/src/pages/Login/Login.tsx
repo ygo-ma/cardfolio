@@ -17,6 +17,7 @@ function LoginPage() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
+  // TODO: Implement field errors
   const [fieldErrors] = useState<Record<string, string>>({});
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const [processing, setProcessing] = useState(false);
