@@ -37,6 +37,8 @@ function LoginPage() {
     setProcessing(true);
 
     try {
+      // Simply logging in will trigger the event
+      // to automatically update the user store (across all tabs)
       await UserBackend.login(email, password);
     } catch (error) {
       if (error instanceof AuthError && error.code !== undefined) {
