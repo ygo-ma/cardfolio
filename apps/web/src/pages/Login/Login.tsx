@@ -1,21 +1,28 @@
 import { Link, useLocation, useNavigate } from "react-router";
-import { useUserStore } from "../../stores/user";
+import { FieldValues, useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
+import { useEffect, useMemo, useState } from "react";
 
 import styles from "./Login.module.css";
 
 import TextInput from "../../components/TextInput";
 import SubmitButton from "../../components/SubmitButton";
 import FormField from "../../components/FormField";
-import { useMemo, useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { useUser } from "../../stores/user";
 import { AuthError, UserBackend } from "../../backends";
 
 function LoginPage() {
   const { t } = useTranslation("common");
-  const userStore = useUserStore();
   const { state } = useLocation();
+  const user = useUser(false);
   const navigate = useNavigate();
+
+  // Redirect the user if they successfully log in
+  useEffect(() => {
+    if (user) {
+      navigate(state?.redirect ?? "/");
+    }
+  }, [navigate, state, user]);
 
   // TODO: Implement field errors
   const [fieldErrors] = useState<Record<string, string>>({});
@@ -24,16 +31,15 @@ function LoginPage() {
 
   const { register, handleSubmit, formState } = useForm();
 
+  // TODO: Implement flash messages
+
   const onSubmit = async ({ email, password }: FieldValues) => {
     setProcessing(true);
 
     try {
-      const user = await UserBackend.login(email, password);
-      userStore.setUser(user);
-
-      if (state && "redirect" in state) {
-        navigate(state.redirect, { replace: true });
-      }
+      // Simply logging in will trigger the event
+      // to automatically update the user store (across all tabs)
+      await UserBackend.login(email, password);
     } catch (error) {
       if (error instanceof AuthError && error.code !== undefined) {
         setFormErrors([error.code]);
@@ -84,14 +90,21 @@ function LoginPage() {
       <div>
         <Trans
           i18nKey="login.forgot_password"
-          components={[<Link to="/forgot_password" />]}
+          components={[
+            <Link
+              to="/forgot_password"
+              state={{ redirect: state?.redirect }}
+            />,
+          ]}
         />
       </div>
       <SubmitButton label={t("login.login_button")} processing={processing} />
       <div>
         <Trans
           i18nKey="login.need_account"
-          components={[<Link to="/signup" />]}
+          components={[
+            <Link to="/signup" state={{ redirect: state?.redirect }} />,
+          ]}
         />
       </div>
     </form>

@@ -1,7 +1,7 @@
-import { Link, useNavigate } from "react-router";
-import { Trans, useTranslation } from "react-i18next";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useForm, FieldValues } from "react-hook-form";
-import { useMemo, useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { useEffect, useMemo, useState } from "react";
 
 import styles from "./SignUp.module.css";
 
@@ -9,10 +9,20 @@ import { UserBackend, AuthError } from "../../backends";
 import TextInput from "../../components/TextInput";
 import SubmitButton from "../../components/SubmitButton";
 import FormField from "../../components/FormField";
+import { useUser } from "../../stores/user";
 
 function SignUp() {
   const { t } = useTranslation("common");
+  const { state } = useLocation();
+  const user = useUser(false);
   const navigate = useNavigate();
+
+  // Redirect the user if they successfully log in
+  useEffect(() => {
+    if (user) {
+      navigate(state?.redirect ?? "/");
+    }
+  }, [navigate, state, user]);
 
   const [processing, setProcessing] = useState(false);
   const [serverErrors, setServerErrors] = useState<Record<string, string>>({});
@@ -96,7 +106,9 @@ function SignUp() {
       <div>
         <Trans
           i18nKey="login.already_have_account"
-          components={[<Link to="/login" />]}
+          components={[
+            <Link to="/login" state={{ redirect: state?.redirect }} />,
+          ]}
         />
       </div>
     </form>

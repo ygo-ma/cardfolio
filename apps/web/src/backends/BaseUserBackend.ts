@@ -67,4 +67,19 @@ export default abstract class BaseUserBackend {
    * Retrieves the current user
    */
   abstract getCurrentUser(): Promise<User | undefined>;
+
+  /**
+   * Log out the current user
+   */
+  abstract logout(): Promise<void>;
+
+  /**
+   * Register a callback to be called when the user logs in
+   */
+  abstract onLogin(callback: (user: User) => void): () => void;
+
+  /**
+   * Register a callback to be called when the user logs out
+   */
+  abstract onLogout(callback: () => void): () => void;
 }
