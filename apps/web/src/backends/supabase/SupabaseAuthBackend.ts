@@ -4,13 +4,13 @@ import {
   type User as SupabaseUser,
 } from "@supabase/supabase-js";
 
-import BaseUserBackend, { AuthError, User } from "../BaseUserBackend.ts";
+import BaseAuthBackend, { AuthError, User } from "../BaseAuthBackend.ts";
 import supabase from "./client.ts";
 
 /**
  * User backend using Supabase
  */
-export default class SupabaseUserBackend extends BaseUserBackend {
+export default class SupabaseAuthBackend extends BaseAuthBackend {
   async create(email: string, password: string) {
     const { error } = await supabase.auth.signUp({
       email: email,

@@ -9,7 +9,7 @@ import TextInput from "../../components/TextInput";
 import SubmitButton from "../../components/SubmitButton";
 import FormField from "../../components/FormField";
 import { useUser } from "../../stores/user";
-import { AuthError, UserBackend } from "../../backends";
+import { AuthError, AuthBackend } from "../../backends";
 
 function LoginPage() {
   const { t } = useTranslation("common");
@@ -39,7 +39,7 @@ function LoginPage() {
     try {
       // Simply logging in will trigger the event
       // to automatically update the user store (across all tabs)
-      await UserBackend.login(email, password);
+      await AuthBackend.login(email, password);
     } catch (error) {
       if (error instanceof AuthError && error.code !== undefined) {
         setFormErrors([error.code]);

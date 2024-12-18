@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { User, UserBackend } from "../backends";
+import { User, AuthBackend } from "../backends";
 
 type UserStore = {
   user: User | undefined | null; // null means the session is not loaded yet
@@ -20,12 +20,12 @@ export const useUserStore = create<UserStore>((set) => ({
 }));
 
 // Update the store when the user logs in
-UserBackend.onLogin((user) => {
+AuthBackend.onLogin((user) => {
   useUserStore.setState({ user });
 });
 
 // Update the store when the user logs out
-UserBackend.onLogout(() => {
+AuthBackend.onLogout(() => {
   useUserStore.setState({ user: undefined });
 });
 
@@ -42,7 +42,7 @@ export function useUser(loginRequired = true): User | undefined {
 
   // Load the session if it is not already loaded
   if (user === null) {
-    throw UserBackend.getCurrentUser().then((user) => {
+    throw AuthBackend.getCurrentUser().then((user) => {
       useUserStore.setState({ user });
     });
   }

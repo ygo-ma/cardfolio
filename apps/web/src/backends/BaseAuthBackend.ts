@@ -35,9 +35,9 @@ export class User {
 }
 
 /**
- * Base class for user backends
+ * Base class for auth backends
  */
-export default abstract class BaseUserBackend {
+export default abstract class BaseAuthBackend {
   /**
    * Create a user
    *

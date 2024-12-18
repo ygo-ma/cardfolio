@@ -1,1 +1,1 @@
-export { default as SupabaseUserBackend } from "./SupabaseUserBackend";
+export { default as SupabaseAuthBackend } from "./SupabaseAuthBackend";
