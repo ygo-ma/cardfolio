@@ -5,7 +5,7 @@ import { MouseEventHandler } from "react";
 import styles from "./Header.module.css";
 
 import { useUser } from "../../stores/user";
-import { UserBackend } from "../../backends";
+import { AuthBackend } from "../../backends";
 
 function Header() {
   const { t } = useTranslation("common");
@@ -15,7 +15,7 @@ function Header() {
   const logout: MouseEventHandler<HTMLAnchorElement> = async (event) => {
     event.preventDefault();
 
-    await UserBackend.logout();
+    await AuthBackend.logout();
 
     navigate("/");
   };
