@@ -36,4 +36,7 @@ export default defineConfig(({ mode }) => ({
           : "[name]__[local]__[hash:base64:5]",
     },
   },
+  esbuild: {
+    pure: ["console.log", "console.info", "console.debug"],
+  },
 }));
