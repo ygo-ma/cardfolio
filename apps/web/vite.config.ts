@@ -30,6 +30,7 @@ export default defineConfig({
   css: {
     modules: {
       localsConvention: "camelCaseOnly",
+      generateScopedName: "[hash:base64:7]",
     },
   },
 });
