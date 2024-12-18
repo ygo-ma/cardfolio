@@ -10,7 +10,7 @@ const htmlData = {
   version,
 };
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     createHtmlPlugin({
@@ -30,7 +30,10 @@ export default defineConfig({
   css: {
     modules: {
       localsConvention: "camelCaseOnly",
-      generateScopedName: "[hash:base64:7]",
+      generateScopedName:
+        mode === "production"
+          ? "[hash:base64:7]"
+          : "[name]__[local]__[hash:base64:5]",
     },
   },
-});
+}));
