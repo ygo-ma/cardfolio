@@ -10,7 +10,7 @@ const htmlData = {
   version,
 };
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     createHtmlPlugin({
@@ -18,9 +18,25 @@ export default defineConfig({
       inject: { data: htmlData },
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: "assets/[hash].[ext]",
+        chunkFileNames: "assets/[hash].js",
+        entryFileNames: "assets/[hash].js",
+      },
+    },
+  },
   css: {
     modules: {
       localsConvention: "camelCaseOnly",
+      generateScopedName:
+        mode === "production"
+          ? "[hash:base64:7]"
+          : "[name]__[local]__[hash:base64:5]",
     },
   },
-});
+  esbuild: {
+    pure: ["console.log", "console.info", "console.debug"],
+  },
+}));
