@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route } from "react-router";
 import { ErrorBoundary } from "react-error-boundary";
 
 import ErrorPage from "../components/ErrorPage";
@@ -14,13 +14,14 @@ import NotFoundPage from "../pages/NotFound";
 
 import "../assets/style/main.css";
 import "./setupI18n.ts";
+import { SentryRoutes } from "./setupSentry.ts";
 
 function App() {
   return (
     <BrowserRouter>
       <Suspense fallback="Loading...">
         <ErrorBoundary FallbackComponent={ErrorPage}>
-          <Routes>
+          <SentryRoutes>
             <Route element={<MainLayout />}>
               <Route path="/" index element={<HomePage />} />
               <Route path="/collection" element={<CollectionPage />} />
@@ -30,7 +31,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignUp />} />
             </Route>
-          </Routes>
+          </SentryRoutes>
         </ErrorBoundary>
       </Suspense>
     </BrowserRouter>

@@ -45,6 +45,8 @@ jobs:
         env:
           VITE_SUPABASE_URL: ${{ secrets.STAGING_SUPABASE_URL }}
           VITE_SUPABASE_ANON: ${{ secrets.STAGING_SUPABASE_ANON }}
+          VITE_SENTRY_DSN: ${{ secrets.STAGING_SENTRY_DSN }}
+          VITE_SENTRY_ENVIRNOM
 
       - name: Deploy to cloudflare
         working-directory: apps/web/

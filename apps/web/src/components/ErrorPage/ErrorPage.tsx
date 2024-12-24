@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { type FallbackProps } from "react-error-boundary";
 import { useLocation, useNavigate } from "react-router";
 import { LoginRequiredError } from "../../stores/user";
+import { ignoredErrors } from "../../utils";
 
 function ErrorPage({ error, resetErrorBoundary }: FallbackProps) {
   const navigate = useNavigate();
@@ -24,8 +25,6 @@ function ErrorPage({ error, resetErrorBoundary }: FallbackProps) {
 }
 
 // Prevent ErrorBoundary errors from being logged to the console
-const ignoredErrors = new Set(["LoginRequiredError"]);
-
 // Errors are still logged if using only one of the following methods
 const originalConsoleError = console.error;
 console.error = (error: unknown, ...args: unknown[]) => {
