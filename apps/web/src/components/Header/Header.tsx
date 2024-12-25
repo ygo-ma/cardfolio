@@ -28,7 +28,7 @@ function Header() {
         </NavLink>
         <div className={styles.separator}></div>
         <div className={styles.search}>
-          <a href="#">{t("search")}</a>
+          <NavLink to="/crashtest">{t("search")}</NavLink>
         </div>
         <div className={styles.userButtons}>
           {user ? (

@@ -2,15 +2,22 @@ import { defineConfig } from "vite";
 import { createHtmlPlugin } from "vite-plugin-html";
 import react from "@vitejs/plugin-react-swc";
 import { version } from "./package.json";
+import { short as gitShort } from "git-rev";
+
+const commitHash = await new Promise(gitShort);
+const appVersion = `${version}+${commitHash}`;
 
 // Data to be injected into the html template
 const htmlData = {
   name: "Cardfolio",
   description: "A simple trading card collection manager",
-  version,
+  version: appVersion,
 };
 
 export default defineConfig(({ mode }) => ({
+  define: {
+    __APP_VERSION__: JSON.stringify(appVersion),
+  },
   plugins: [
     react(),
     createHtmlPlugin({

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { User, AuthBackend } from "../backends";
+import { setUser as setSentryUser } from "../App/setupSentry";
 
 type UserStore = {
   user: User | undefined | null; // null means the session is not loaded yet
@@ -21,12 +22,22 @@ export const useUserStore = create<UserStore>((set) => ({
 
 // Update the store when the user logs in
 AuthBackend.onLogin((user) => {
+  console.debug("User logged in", user);
+
   useUserStore.setState({ user });
+
+  setSentryUser({
+    email: user.email,
+  });
 });
 
 // Update the store when the user logs out
 AuthBackend.onLogout(() => {
+  console.debug("User logged out");
+
   useUserStore.setState({ user: undefined });
+
+  setSentryUser(null);
 });
 
 /**
