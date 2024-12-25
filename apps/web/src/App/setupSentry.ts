@@ -19,6 +19,7 @@ const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN;
 if (SENTRY_DSN) {
   init({
     dsn: SENTRY_DSN,
+    release: __APP_VERSION__,
     environment:
       import.meta.env.VITE_SENTRY_ENVIRONMENT ?? import.meta.env.MODE,
     integrations: [
