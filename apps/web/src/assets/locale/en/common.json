@@ -14,6 +14,10 @@
   "login.already_have_account": "Already have an account? <0>Login here</0>",
   "logout": "Logout",
 
+  "error.boundary_title": "Something went wrong",
+  "error.restart_button": "Restart the app",
+  "error.report_button": "File a crash report",
+
   "auth.user_already_exists": "A user with this email already exists",
   "auth.weak_password": "The password needs to have at least 6 characters",
 

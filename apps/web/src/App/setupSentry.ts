@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/react";
 import {
   createRoutesFromChildren,
   matchRoutes,
@@ -6,18 +5,25 @@ import {
   useLocation,
   useNavigationType,
 } from "react-router";
+import {
+  type FallbackRender,
+  init,
+  reactRouterV7BrowserTracingIntegration,
+  withSentryReactRouterV7Routing,
+} from "@sentry/react";
+
 import { ignoredErrors } from "../utils";
-import React from "react";
+import { useEffect } from "react";
 
 const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN;
 if (SENTRY_DSN) {
-  Sentry.init({
+  init({
     dsn: SENTRY_DSN,
     environment:
       import.meta.env.VITE_SENTRY_ENVIRONMENT ?? import.meta.env.MODE,
     integrations: [
-      Sentry.reactRouterV7BrowserTracingIntegration({
-        useEffect: React.useEffect,
+      reactRouterV7BrowserTracingIntegration({
+        useEffect,
         useLocation,
         useNavigationType,
         createRoutesFromChildren,
@@ -33,4 +39,6 @@ if (SENTRY_DSN) {
   });
 }
 
-export const SentryRoutes = Sentry.withSentryReactRouterV7Routing(Routes);
+export { ErrorBoundary, showReportDialog, setUser } from "@sentry/react";
+export type FallbackProps = Parameters<FallbackRender>[0];
+export const SentryRoutes = withSentryReactRouterV7Routing(Routes);
